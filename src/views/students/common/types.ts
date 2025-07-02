@@ -20,7 +20,7 @@ export interface IAcademicEnrollment {
   faculty: string
   program: string
   admission_year: string | Date
-  date_of_admission: Date
+  date_of_admission: Date | string
   academic_duration: string
   class_roll_no?: number
   registration_no?: number
@@ -36,6 +36,32 @@ export interface IPreviousAcademic {
 
 export interface IStudent {
   id: number
+  first_name_en: string
+  middle_name_en: string
+  last_name_en: string
+  first_name_np: string
+  middle_name_np: string
+  last_name_np: string
+  phone_number: number
+  date_of_birth: string
+  gender: string
+  caste: string
+  ethnicity: string
+  edj: string
+  disability_status: string
+  citizenship_number: number
+  national_id_number: number
+  profile_picture: string
+  citizenship_photo: string
+  permanent_address: IAddress
+  temporary_address: IAddress
+  gurdian_details: IGurdianDetails
+  academic_enrollment: IAcademicEnrollment
+  previous_academic: IPreviousAcademic
+  college_id: number
+}
+
+export interface IStudentDTO {
   first_name_en: string
   middle_name_en: string
   last_name_en: string

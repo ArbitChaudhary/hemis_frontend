@@ -22,8 +22,17 @@ const data = defineProps<{
         </tr>
       </thead>
       <tbody>
-        <tr v-for="student in data.students" :key="student.id">
-          <td>{{ student.first_name_en }}</td>
+        <tr v-for="student in data.students" :key="student.id" style="height: 100%">
+          <td>
+            <div style="display: flex; gap: 5px; height: 100%; align-items: center">
+              <img
+                :src="student.profile_picture"
+                alt=""
+                style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden"
+              />
+              {{ student.first_name_en }}
+            </div>
+          </td>
           <td>{{ student.gender }}</td>
           <td>{{ student.permanent_address.district }}</td>
           <td>{{ student.phone_number }}</td>
@@ -72,7 +81,7 @@ thead {
   width: 150px;
 }
 .t-dob {
-  width: 300px;
+  width: 150px;
 }
 .t-district {
   width: 150px;

@@ -8,7 +8,20 @@ const { data, isLoading } = useGetAllStudents()
 
 <template>
   <div class="student-table-container">
-    <h1>All Students</h1>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap-reverse;
+      "
+    >
+      <h1>All Students</h1>
+      <button>
+        <RouterLink to="/students/add">Add Student</RouterLink>
+      </button>
+    </div>
     <div v-if="isLoading">
       <TableSkeleton />
     </div>
@@ -30,5 +43,11 @@ h1 {
 .student-table {
   width: 100%;
   overflow: auto;
+}
+
+button {
+  padding: 6px 30px;
+  height: 40px;
+  border-radius: 5px;
 }
 </style>

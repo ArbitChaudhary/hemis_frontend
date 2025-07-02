@@ -3,6 +3,7 @@ import AboutView from '@/views/about/AboutView.vue'
 import LoginView from '@/views/login/LoginView.vue'
 import HomeView from '@/views/home/HomeView.vue'
 import StudentsView from '@/views/students/list/StudentsView.vue'
+import AddStudentView from '@/views/students/add/AddStudentView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,13 @@ const router = createRouter({
       path: '/students',
       name: 'students',
       component: StudentsView,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/students/add',
+      name: 'students-add',
+      component: AddStudentView,
       meta: { requiresAuth: true },
     },
   ],
