@@ -28,7 +28,20 @@ input {
   border: none;
   background: #f0f1f3;
 }
-
+select {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 16px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #f0f1f3;
+}
+.form-level {
+  font-weight: 600;
+  color: #646464;
+}
 button {
   background-color: var(--vt-button-color);
   height: 40px;
@@ -70,6 +83,72 @@ h5 {
   animation: skeleton-loading 1s linear infinite alternate;
 }
 
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  align-items: last baseline;
+}
+.input-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: auto;
+}
+td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+th {
+  font-weight: 600;
+  border: 1px solid #dddddd;
+  padding: 10px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd50;
+}
+thead {
+  background-color: #dddddd;
+}
+.action-icon {
+  height: 30px;
+  width: 30px;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.action-icon:hover {
+  cursor: pointer;
+}
+.action-icon.edit {
+  background-color: rgb(23, 44, 139);
+}
+.action-icon.delete {
+  background-color: rgb(199, 39, 39);
+}
+.modal-container {
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding: 20px;
+}
 @keyframes skeleton-loading {
   0% {
     background-color: hsl(200, 20%, 80%);
@@ -106,6 +185,10 @@ h5 {
     /* padding: 0 2rem; */
   }
   input {
+    height: 50px;
+    font-size: 18px;
+  }
+  select {
     height: 50px;
     font-size: 18px;
   }

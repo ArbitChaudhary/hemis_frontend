@@ -4,6 +4,8 @@ import LoginView from '@/views/login/LoginView.vue'
 import HomeView from '@/views/home/HomeView.vue'
 import StudentsView from '@/views/students/list/StudentsView.vue'
 import AddStudentView from '@/views/students/add/AddStudentView.vue'
+import BatchListView from '@/views/settings/batch/list/BatchListView.vue'
+import LevelView from '@/views/settings/level/list/LevelView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +40,18 @@ const router = createRouter({
       path: '/students/add',
       name: 'students-add',
       component: AddStudentView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/batch',
+      name: 'batch',
+      component: BatchListView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/levels',
+      name: 'levels',
+      component: LevelView,
       meta: { requiresAuth: true },
     },
   ],

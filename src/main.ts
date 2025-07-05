@@ -7,12 +7,14 @@ import { CoHome, CoSchool, FaUserGraduate, LaChalkboardTeacherSolid } from 'oh-v
 import { addIcons, OhVueIcon } from 'oh-vue-icons'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 addIcons(CoHome, CoSchool, FaUserGraduate, LaChalkboardTeacherSolid)
 
 // Register the component globally
 
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App)
 

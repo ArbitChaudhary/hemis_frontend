@@ -2,6 +2,7 @@
 import { reactive, ref } from 'vue'
 import { useLoginUserMutation } from './common/loginApi'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/pinia/authStore'
 
 const { mutateAsync, isPending, data } = useLoginUserMutation()
 
@@ -12,6 +13,7 @@ const formData = ref({
   password: '',
 })
 const emit = defineEmits(['onSubmit'])
+const authStore = useUserStore()
 const onSubmit = async (e: Event) => {
   emit('onSubmit', { ...formData })
   const data = {
@@ -22,6 +24,7 @@ const onSubmit = async (e: Event) => {
     console.log(result.data)
     if (result.data?.access_token) {
       localStorage.setItem('access_token', result.data.access_token)
+      authStore.setUserInfo(result?.data?.data)
     }
     router.push('/')
   } catch (error) {

@@ -5,7 +5,7 @@ interface ISidebarData {
   href?: string
   title: string
   icon?: IconType
-  target: string
+  target?: string
   children?: ISidebarData[]
 }
 
@@ -39,10 +39,21 @@ export const SidebarData: ISidebarData[] = [
       },
     ],
   },
-  //   {
-  //     title: 'Teachers',
-  //     href: 'teachers',
-  //     target: '_self',
-  //     icon: LaChalkboardTeacherSolid,
-  //   },
+  {
+    title: 'Settings',
+
+    icon: LaChalkboardTeacherSolid,
+    children: [
+      {
+        title: 'Batch',
+        href: 'batch',
+        target: '_self',
+      },
+      {
+        title: 'Level',
+        href: 'levels',
+        target: '_self',
+      },
+    ],
+  },
 ]
