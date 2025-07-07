@@ -27,3 +27,4 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
     </div>
   </MainLayout>
 </template>
+

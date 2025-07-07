@@ -6,6 +6,7 @@ import StudentsView from '@/views/students/list/StudentsView.vue'
 import AddStudentView from '@/views/students/add/AddStudentView.vue'
 import BatchListView from '@/views/settings/batch/list/BatchListView.vue'
 import LevelView from '@/views/settings/level/list/LevelView.vue'
+import FacultyView from '@/views/settings/faculty/list/FacultyView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,12 @@ const router = createRouter({
       name: 'levels',
       component: LevelView,
       meta: { requiresAuth: true },
+    },
+    {
+      path: '/faculty',
+      name: 'faculty',
+      component: FacultyView,
+      meta: { requiredAuth: true },
     },
   ],
 })

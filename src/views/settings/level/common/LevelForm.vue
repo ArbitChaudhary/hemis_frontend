@@ -42,7 +42,7 @@ const handleSubmit = () => {
 <template>
   <form @submit.prevent="handleSubmit" class="form-container">
     <div class="input-item">
-      <label for="batch">Batch</label>
+      <label for="batch" class="form-level">Batch</label>
       <select v-model="formData.batch" :disabled="!BatchArray">
         <option :value="null" class="select">--Select</option>
         <option v-for="batch in BatchArray" :key="batch.id" :value="batch?.id">

@@ -17,4 +17,7 @@ export default {
   deleteLevelById(id: string): Promise<{ data: ILevel }> {
     return authorize.delete(`/levels/${id}`)
   },
+  getLevelByBatchId(id: number): Promise<{ data: ILevel[] }> {
+    return authorize.get(`/levels/batch-level/${id}`)
+  },
 }

@@ -6,7 +6,7 @@ export const batchAPIKeys = {
   all: ['batches'] as const,
   lists: () => [...batchAPIKeys.all, 'list'] as const,
   list: (filter: string) => [...batchAPIKeys.lists(), filter] as const,
-  details: (id: string) => [...batchAPIKeys.all] as const,
+  details: (id: string) => [...batchAPIKeys.all, id] as const,
 }
 
 export const useAddBatchMutation = () => {
@@ -119,15 +119,17 @@ export const useDeleteBatchByIdMutation = () => {
       return result.data
     },
     onMutate: (id) => {
-      queryClient.cancelQueries({ queryKey: batchAPIKeys.details(String(id)) })
       queryClient.cancelQueries({ queryKey: batchAPIKeys.lists() })
+      queryClient.cancelQueries({ queryKey: batchAPIKeys.details(String(id)) })
 
       const prevBatch = queryClient.getQueryData(batchAPIKeys.details(String(id)))
 
       const prevList = queryClient.getQueryData(batchAPIKeys.lists())
 
-      queryClient.setQueryData(
-        batchAPIKeys.lists(),
+      queryClient.setQueriesData({
+        queryKey:
+        batchAPIKeys.lists()
+      },
         (old: { data: IBatch[] | undefined } | undefined) => {
           if (!old?.data) {
             return { data: [] }
@@ -150,10 +152,10 @@ export const useDeleteBatchByIdMutation = () => {
         queryClient.setQueryData(batchAPIKeys.lists(), context.prevList)
       }
     },
-    onSuccess: (data, error, id) => {
+    onSettled: (data, error, id) => {
       queryClient.invalidateQueries({ queryKey: batchAPIKeys.lists() })
       if (!error) {
-        queryClient.cancelQueries({ queryKey: batchAPIKeys.details(String(id)) })
+        queryClient.removeQueries({ queryKey: batchAPIKeys.details(String(id)) })
       }
     },
   })

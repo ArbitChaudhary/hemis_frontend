@@ -1,6 +1,7 @@
 import levelApi from '@/api/api-endpoints/levelApi'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import type { ILevel, ILevelDTO } from './level_types'
+import { computed, toValue, type Ref } from 'vue'
 
 export const levelAPIKeys = {
   all: ['levels'] as const,
@@ -8,13 +9,14 @@ export const levelAPIKeys = {
   list: (filter: string) => [...levelAPIKeys.lists(), filter] as const,
   details: () => [...levelAPIKeys.all, 'detail'] as const,
   detail: (id: string) => [...levelAPIKeys.details(), id] as const,
+  batchLevel: (id: number) => [...levelAPIKeys.all, id] as const,
 }
 
-export const useGetLevelsByCollegeIdQuery = (id: string) => {
+export const useGetLevelsByCollegeIdQuery = (id: number) => {
   return useQuery({
-    queryKey: levelAPIKeys.lists(),
+    queryKey: levelAPIKeys.batchLevel(id),
     queryFn: async () => {
-      const result = await levelApi.getLevelByCollegeId(id)
+      const result = await levelApi.getLevelByCollegeId(String(id))
       return result.data
     },
     refetchOnWindowFocus: false,
@@ -23,6 +25,32 @@ export const useGetLevelsByCollegeIdQuery = (id: string) => {
   })
 }
 
+// export const useGetLevelByBatchIdQuery = (id: number) => {
+//   return useQuery({
+//     queryKey: levelAPIKeys.batchLevel(Number(toValue(id))),
+//     queryFn: async () => {
+//       const result = await levelApi.getLevelByBatchId(id)
+//       return result.data
+//     },
+//     staleTime: Infinity,
+//     refetchOnWindowFocus: false,
+//     enabled: computed(() => !!toValue(id)),
+//   })
+// }
+
+export const useGetLevelByBatchIdQuery = (id: number | Ref<number | null>) => {
+  return useQuery({
+    queryKey: computed(() => levelAPIKeys.batchLevel(Number(toValue(id)))),
+    queryFn: async () => {
+      const realId = Number(toValue(id))
+      const result = await levelApi.getLevelByBatchId(realId)
+      return result.data
+    },
+    enabled: computed(() => !!toValue(id)),
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+  })
+}
 export const useAddLevelMutation = () => {
   const queryClient = useQueryClient()
   return useMutation({
