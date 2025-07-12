@@ -17,16 +17,16 @@ export const SidebarData: ISidebarData[] = [
     icon: CoHome,
   },
   {
-    title: 'About',
-    href: 'about',
+    title: 'College',
+    href: 'college',
     target: '_self',
   },
-  // {
-  //   title: 'Colleges',
-  //   href: 'colleges',
-  //   target: '_self',
-  //   icon: CoSchool,
-  // },
+  {
+    title: 'Users',
+    href: 'users',
+    target: '_self',
+    // icon: CoSchool,
+  },
   {
     title: 'Students',
     target: '_self',
@@ -52,6 +52,16 @@ export const SidebarData: ISidebarData[] = [
       {
         title: 'Level',
         href: 'levels',
+        target: '_self',
+      },
+      {
+        title: 'Faculty',
+        href: 'faculty',
+        target: '_self',
+      },
+      {
+        title: 'Programs',
+        href: 'programs',
         target: '_self',
       },
     ],

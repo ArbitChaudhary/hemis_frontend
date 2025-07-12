@@ -7,7 +7,7 @@ import type { ILevel } from '../../common/level_types'
 
 const store = useUserStore()
 
-const { data, isLoading } = useGetLevelsByCollegeIdQuery(String(store?.userInfo?.college_id))
+const { data, isLoading } = useGetLevelsByCollegeIdQuery(Number(store?.userInfo?.college_id))
 </script>
 
 <template>

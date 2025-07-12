@@ -7,6 +7,11 @@ import AddStudentView from '@/views/students/add/AddStudentView.vue'
 import BatchListView from '@/views/settings/batch/list/BatchListView.vue'
 import LevelView from '@/views/settings/level/list/LevelView.vue'
 import FacultyView from '@/views/settings/faculty/list/FacultyView.vue'
+import ProgramsView from '@/views/settings/programs/list/ProgramsView.vue'
+import CollegeListView from '@/views/college/list/CollegeListView.vue'
+import CollegeAddView from '@/views/college/add/CollegeAddView.vue'
+import CollegeEditView from '@/views/college/edit/CollegeEditView.vue'
+import UsersView from '@/views/users/UsersView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,12 +23,24 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/college',
+      name: 'college',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: AboutView,
+      component: CollegeListView,
+    },
+    {
+      path: '/college/add',
+      name: 'college-add',
+      component: CollegeAddView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/college/edit/:id',
+      name: 'college-edit',
+      component: CollegeEditView,
+      meta: { requiresAuth: true },
     },
     {
       path: '/login',
@@ -36,7 +53,12 @@ const router = createRouter({
       component: StudentsView,
       meta: { requiresAuth: true },
     },
-
+    {
+      path: '/users',
+      name: 'users',
+      component: UsersView,
+      meta: { requiresAuth: true },
+    },
     {
       path: '/students/add',
       name: 'students-add',
@@ -59,7 +81,13 @@ const router = createRouter({
       path: '/faculty',
       name: 'faculty',
       component: FacultyView,
-      meta: { requiredAuth: true },
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/programs',
+      name: 'programs',
+      component: ProgramsView,
+      meta: { requiresAuth: true },
     },
   ],
 })

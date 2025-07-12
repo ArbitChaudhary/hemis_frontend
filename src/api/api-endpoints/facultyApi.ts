@@ -20,4 +20,7 @@ export default {
   getFacultiesByCollegeId(id: number): Promise<{ data: IFaculty[] }> {
     return authorize.get(`/faculties/college-faculties/${id}`)
   },
+  getFacultiesByLevelId(id: number): Promise<{ data: IFaculty[] }> {
+    return authorize.get(`/faculties/level/${id}`)
+  },
 }

@@ -9,12 +9,13 @@ export const levelAPIKeys = {
   list: (filter: string) => [...levelAPIKeys.lists(), filter] as const,
   details: () => [...levelAPIKeys.all, 'detail'] as const,
   detail: (id: string) => [...levelAPIKeys.details(), id] as const,
-  batchLevel: (id: number) => [...levelAPIKeys.all, id] as const,
+  batchLevel: (id: number) => [...levelAPIKeys.lists(), id] as const,
+  collegeLevel: (id: number) => [...levelAPIKeys.lists(), id] as const,
 }
 
 export const useGetLevelsByCollegeIdQuery = (id: number) => {
   return useQuery({
-    queryKey: levelAPIKeys.batchLevel(id),
+    queryKey: levelAPIKeys.collegeLevel(id),
     queryFn: async () => {
       const result = await levelApi.getLevelByCollegeId(String(id))
       return result.data
@@ -24,19 +25,6 @@ export const useGetLevelsByCollegeIdQuery = (id: number) => {
     staleTime: Infinity,
   })
 }
-
-// export const useGetLevelByBatchIdQuery = (id: number) => {
-//   return useQuery({
-//     queryKey: levelAPIKeys.batchLevel(Number(toValue(id))),
-//     queryFn: async () => {
-//       const result = await levelApi.getLevelByBatchId(id)
-//       return result.data
-//     },
-//     staleTime: Infinity,
-//     refetchOnWindowFocus: false,
-//     enabled: computed(() => !!toValue(id)),
-//   })
-// }
 
 export const useGetLevelByBatchIdQuery = (id: number | Ref<number | null>) => {
   return useQuery({

@@ -1,7 +1,8 @@
 export interface IFacultyDTO {
   name: string | null
-  level: string | null
+  level: number | null
   college_id: number | null
+  batch: number | null
 }
 
 export interface IFaculty {
@@ -9,4 +10,5 @@ export interface IFaculty {
   level: string
   name: string
   college_id: number
+  batch: number
 }

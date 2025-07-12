@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { addIcons, OhVueIcon } from 'oh-vue-icons'
+import { MdHomeOutlined } from 'oh-vue-icons/icons'
+
+addIcons(MdHomeOutlined)
+
 const props = defineProps<{
   title: string
   subheader: string[]
@@ -8,6 +13,7 @@ const props = defineProps<{
 <template>
   <h1 class="header">{{ props.title }}</h1>
   <div class="sub-header">
+    <OhVueIcon name="md-home-outlined" style="height: 25px; width: 25px" />
     <span>Home</span>
     <div style="color: #fea801; display: flex; flex-direction: row; flex-wrap: wrap; gap: 5px">
       >

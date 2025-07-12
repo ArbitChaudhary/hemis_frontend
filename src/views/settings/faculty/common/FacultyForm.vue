@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '@/pinia/authStore'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import {
   useGetLevelByBatchIdQuery,
   useGetLevelsByCollegeIdQuery,
@@ -22,9 +22,10 @@ const props = withDefaults(defineProps<FacultyFormProps>(), {
   mode: 'add',
 })
 const formData = reactive({
-  level: '',
+  level: null as number | null,
   name: '',
   college_id: store?.userInfo?.college_id ? store?.userInfo?.college_id : null,
+  batch: null as number | null,
 })
 const batchId = reactive({
   batch_id: null as number | null,
@@ -32,7 +33,18 @@ const batchId = reactive({
 
 const collegeId = store?.userInfo?.college_id ? store?.userInfo?.college_id : null
 const { data: BatchArray } = useGetBatchByCollegeIdQuery(String(collegeId))
-const { data: LevelArray } = useGetLevelByBatchIdQuery(computed(() => batchId.batch_id))
+const { data: LevelArray } = useGetLevelByBatchIdQuery(computed(() => formData.batch))
+
+watch(
+  () => props.initialData,
+  (newFaculty) => {
+    Object.assign(formData, newFaculty)
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+)
 
 const handleSubmit = () => {
   props.onSubmit({ ...formData })
@@ -46,7 +58,7 @@ console.log(batchId.batch_id)
     <div class="form-container">
       <div class="input-item">
         <label for="Batch" class="form-level">Batch</label>
-        <select v-model="batchId.batch_id">
+        <select v-model="formData.batch">
           <option :value="null" class="select">--Select</option>
           <option v-for="batch in BatchArray" :key="batch?.id" :value="batch?.id">
             {{ batch?.name }}

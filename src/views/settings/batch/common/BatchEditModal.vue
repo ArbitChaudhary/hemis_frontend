@@ -70,6 +70,5 @@ const onSubmit = async (data: IBatchDTO) => {
   margin: 0 auto;
   padding: 50px;
   background-color: white;
-  text-align: black;
 }
 </style>
