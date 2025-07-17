@@ -4,8 +4,10 @@ import AddStudentForm from './AddStudentForm.vue'
 
 <template>
   <div class="form-container">
-    <h1>Add Student Details</h1>
-    <AddStudentForm />
+    <div style="width: 100%; display: flex; flex-direction: column">
+      <h1>Add Student Details</h1>
+      <AddStudentForm />
+    </div>
   </div>
 </template>
 

@@ -45,7 +45,9 @@ const toggleDropdown = (title: string) => {
             justify-content: space-between;
           "
         >
-          <RouterLink :to="{ name: item.href }" style="width: 100%">{{ item.title }}</RouterLink>
+          <RouterLink :to="{ name: item.href }" style="width: 100%; font-size: 14px">{{
+            item.title
+          }}</RouterLink>
           <!-- <v-icon name="bi-chevron-compact-down" scale="2" /> -->
           <component
             :is="icon['v-icon']"
@@ -62,7 +64,7 @@ const toggleDropdown = (title: string) => {
             :class="{ active: currentPath === data.href || route.name === data.href }"
             class="sidebar-item"
           >
-            <RouterLink :to="{ name: data.href }" style="width: 100%; font-size: 15px">{{
+            <RouterLink :to="{ name: data.href }" style="width: 100%; font-size: 14px">{{
               data.title
             }}</RouterLink>
           </div>

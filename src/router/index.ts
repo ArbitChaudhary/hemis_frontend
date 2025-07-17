@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AboutView from '@/views/about/AboutView.vue'
 import LoginView from '@/views/login/LoginView.vue'
 import HomeView from '@/views/home/HomeView.vue'
 import StudentsView from '@/views/students/list/StudentsView.vue'
@@ -12,6 +11,11 @@ import CollegeListView from '@/views/college/list/CollegeListView.vue'
 import CollegeAddView from '@/views/college/add/CollegeAddView.vue'
 import CollegeEditView from '@/views/college/edit/CollegeEditView.vue'
 import UsersView from '@/views/users/UsersView.vue'
+import TeacherView from '@/views/teachers/list/TeacherView.vue'
+import AddTeacherView from '@/views/teachers/add/AddTeacherView.vue'
+import StaffView from '@/views/staffs/list/StaffView.vue'
+import AddStaffView from '@/views/staffs/add/AddStaffView.vue'
+import StaffEditView from '@/views/staffs/edit/StaffEditView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -87,6 +91,36 @@ const router = createRouter({
       path: '/programs',
       name: 'programs',
       component: ProgramsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/teachers',
+      name: 'teachers',
+      component: TeacherView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/teachers/add',
+      name: 'teachers-add',
+      component: AddTeacherView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/staffs',
+      name: 'staffs',
+      component: StaffView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/staffs/add',
+      name: 'staffs-add',
+      component: AddStaffView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/staffs/edit/:id',
+      name: 'staffs-edit',
+      component: StaffEditView,
       meta: { requiresAuth: true },
     },
   ],

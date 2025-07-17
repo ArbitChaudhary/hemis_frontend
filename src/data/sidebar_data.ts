@@ -22,6 +22,16 @@ export const SidebarData: ISidebarData[] = [
     target: '_self',
   },
   {
+    title: 'Teachers',
+    href: 'teachers',
+    target: '_self',
+  },
+  {
+    title: 'Staffs',
+    href: 'staffs',
+    target: '_self',
+  },
+  {
     title: 'Users',
     href: 'users',
     target: '_self',
